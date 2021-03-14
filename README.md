@@ -15,10 +15,11 @@ Abaixo está descrito como instalar e configurar as dependencias de desenvolvime
 
 Dependências:
 - [Docker Desktop](https://www.docker.com/)
+- [WSL back-end 2](https://aka.ms/vscode-remote/containers/docker-wsl2)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Git](https://git-scm.com/)
 
-Baixe e instale o [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) para Windows e o [Visual Studio Code](https://code.visualstudio.com/download). Após isso, Após isso, abra o Visual Studio Code e vá na aba de extensõens do Code ou pressione `Ctrl+Shift+X` e procure por "Remote Development" e instale a extensão. Instale o [git](https://git-scm.com/download/win), logo após clone esse repositório e abra a pasta no Visual Studio Code, pressione `Ctrl+Shift+P` e digite "reopen in container" e confirme. Dentro de alguns minutos o ambiente de desenvolvimento será configurado.
+Baixe e instale o [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) para Windows e o [Visual Studio Code](https://code.visualstudio.com/download). Siga as instruções de instalação do [WSL back-end 2](https://aka.ms/vscode-remote/containers/docker-wsl2),  após isso, abra o Visual Studio Code e vá na aba de extensõens do Code ou pressione `Ctrl+Shift+X` e procure por "Remote Development" e instale a extensão. Instale o [git](https://git-scm.com/download/win), logo após clone esse repositório e abra a pasta no Visual Studio Code, pressione `Ctrl+Shift+P` e digite "reopen in container" e confirme. Dentro de alguns minutos o ambiente de desenvolvimento será configurado.
 
 Obs: O Docker Desktop só pode ser instalado no Windows 10, infelizmente =(.
 
