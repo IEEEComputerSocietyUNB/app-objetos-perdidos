@@ -74,7 +74,7 @@ Para executar a aplicação basta abrir o barra de comandos via `Ctrl+Shift+P` o
 Para verificar se o banco de dados foi instalado corretamente, acesse a página `http://localhost:5000/db_test`. A segunte mensagem deve ser exibida.
 
 ```
-('information_schema',)('mysql',)('performance_schema',)('sys',)
+Banco de dados inicializado com sucesso!
 ```
 
 Para parar a execução da aplicação basta clicar no terminal do Visual Studio Code e pressionar `Ctrl+C` e depois `Enter`.
