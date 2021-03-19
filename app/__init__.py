@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, url_for, request, redirect
 import mysql.connector
-from .model import Object, get_objects, add_object
+from .model import Object, get_objects, add_object, delete_object, update_object, q_select, q_filter
 from datetime import date
 
 
@@ -25,8 +25,10 @@ def create_app(test_config=None):
             query = get_objects.format()
             cursor.execute(query)
 
+            registers = cursor.fetchall()
+
             objs = []
-            for register in cursor:
+            for register in registers:
                 objs.append(Object._make(register))
 
             database.close_db()
@@ -36,7 +38,7 @@ def create_app(test_config=None):
         else:
             name = request.form['name']
             description = request.form['description']
-            create_date = str(date.today())
+            create_date = date.today().strftime('%Y-%m-%d')
             query = add_object.format(name=name, description=description, create_date=create_date)
 
             cursor.execute(query)
@@ -46,6 +48,34 @@ def create_app(test_config=None):
 
             return redirect(url_for('objects'))
 
+
+
+    @app.route('/objects/<int:id>', methods=['PUT', 'DELETE'])
+    def object_update_or_delete(id):
+        db = database.get_db()
+        cursor = db.cursor()
+
+        if request.method == 'DELETE':
+            query = delete_object.format(id=id)
+            cursor.execute(query)
+            db.commit()
+
+            database.close_db()
+
+            return redirect(url_for('objects'), code=303)
+        else:
+            name = request.form['name']
+            description = request.form['description']
+
+            create_date = date.today().strftime('%Y-%m-%d')
+
+            query = update_object.format(id=id, name=name, description=description, create_date=create_date)
+            cursor.execute(query)
+            db.commit()
+
+            database.close_db()
+
+            return redirect(url_for('objects'), code=303)
     
 
     @app.route('/db_test')

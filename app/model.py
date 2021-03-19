@@ -24,3 +24,38 @@ get_objects = (
     'SELECT id, name, description, create_date FROM Objects'
 )
 
+
+update_object = (
+  'UPDATE Objects '
+  'SET name = \'{name}\', description=\'{description}\', create_date=\'{create_date}\' '
+  'WHERE id = {id}'
+)
+
+delete_object = (
+    'DELETE FROM Objects ' 
+    'WHERE id = {id}'
+)
+
+q_select = (
+    'SELECT {fields} FROM {tables} '
+)
+
+q_insert = (
+    'INSERT INTO {table} '
+    '({fields_names}) '
+    'VALUES ({fields_values})'
+)
+
+q_update = (
+  'UPDATE {table} '
+  'SET {fields_map} '
+)
+
+q_delete = (
+    'DELETE FROM {table} ' 
+)
+
+q_filter = (
+    'WHERE {fields_map} '
+)
+
