@@ -14,6 +14,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && /etc/init.d/mysql start \
     && echo "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'password';" | mysql -u root -p='' \
     && echo "GRANT ALL PRIVILEGES ON *.* TO 'dev'@'localhost';" | mysql -u root -p='' \
-    && echo "FLUSH PRIVILEGES;" | mysql -u root -p=''
+    && echo "FLUSH PRIVILEGES;" | mysql -u root -p='' \
+    && echo "CREATE DATABASE dbtest;" | mysql -u root -p=''
 
 
