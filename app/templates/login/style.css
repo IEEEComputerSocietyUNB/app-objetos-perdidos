@@ -4,10 +4,10 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #60a3bc !important;
+			background: linear-gradient(180deg,  #1f9af1, #0b3655)!important;
 		}
 		.user_card {
-			height: 400px;
+			height: 420px;
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
@@ -17,20 +17,20 @@
 			justify-content: center;
 			flex-direction: column;
 			padding: 10px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
+			box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 8px;
 
 		}
 		.brand_logo_container {
 			position: absolute;
-			height: 170px;
+			height: 165px;
 			width: 170px;
 			top: -75px;
 			border-radius: 50%;
 			background: #cdd2d4;
-			padding: 10px;
+			padding: 7px;
 			text-align: center;
 		}
 		.brand_logo {
@@ -44,18 +44,22 @@
 		}
 		.login_btn {
 			width: 100%;
-			background: #b1c02b !important;
+			margin-top: 30px;
+			background: #00824a !important;
 			color: white !important;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
 			outline: 0px !important;
 		}
+		.login_btn:hover {
+			background: #006d3e !important;
+		}
 		.login_container {
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #c0392b !important;
+			background: #00824a !important;
 			color: rgb(246, 244, 248) !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
@@ -66,5 +70,13 @@
 			outline: 0px !important;
 		}
 		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-			background-color: #c0392b !important;
+			background-color: #00824a !important;
 		}
+		.ml-2 {
+			color: #00824a;
+			text-decoration: none !important;
+		}
+		.ml-2:hover{
+			color: #006d3e !important;
+			font-weight: bold !important;
+		  }
