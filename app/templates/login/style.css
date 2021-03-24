@@ -4,7 +4,7 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: linear-gradient(180deg,  #1f9af1, #0b3655)!important;
+			background: linear-gradient(180deg,  #1c8adb, #0b3655)!important;
 		}
 		.user_card {
 			height: 420px;
@@ -68,9 +68,6 @@
 		.input_pass:focus {
 			box-shadow: none !important;
 			outline: 0px !important;
-		}
-		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-			background-color: #00824a !important;
 		}
 		.ml-2 {
 			color: #00824a;
