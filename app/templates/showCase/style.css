@@ -73,7 +73,6 @@
         background-color: #ebe8e8;
     }
     .text-center #descricao{
-        max-width: 25ch;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

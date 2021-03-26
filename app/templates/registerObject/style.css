@@ -17,7 +17,7 @@
         box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 8px;
+        border-radius:8px;
     }
  
     .login_btn {
@@ -45,7 +45,7 @@
         margin-top: 10%;
         color: #ffff;
         font-weight: bold;
-        font-size: 45px;
+        font-size: 35px;
         margin-bottom: 90px;
     }
     .mb-3{
@@ -61,5 +61,9 @@
     }
     .form_container{
         margin-top: 10%;
+    }
+    .mb-3 textarea{
+        height: 150px;
+        resize:none;
     }
 
