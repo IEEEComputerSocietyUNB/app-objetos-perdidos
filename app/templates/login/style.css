@@ -76,4 +76,7 @@
 		.ml-2:hover{
 			color: #006d3e !important;
 			font-weight: bold !important;
-		  }
+		}
+		.row{
+			margin-top: 10% !important;
+		}

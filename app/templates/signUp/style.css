@@ -22,22 +22,6 @@
         -moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
  
-    .brand_logo_container {
-        position: absolute;
-        height: 165px;
-        width: 170px;
-        top: -75px;
-        border-radius: 50%;
-        background: #cdd2d4;
-        padding: 7px;
-        text-align: center;
-    }
-    .brand_logo {
-        height: 150px;
-        width: 150px;
-        border-radius: 50%;
-        border: 2px solid white;
-    }
     .login_btn {
         width: 100%;
         margin-top: 30px;
@@ -59,7 +43,7 @@
         box-shadow: none !important;
         outline: 0px !important;
     }
-    .user_card #title{
+    .user_card #title h2{
         color: #006d3e;
         font-weight: bold;
         font-size: 45px;
