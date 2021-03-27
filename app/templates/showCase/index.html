@@ -44,6 +44,9 @@
                             <div class="caption text-center">
                                 <h3>{{ obj.name }}</h3>
                                 <p id="descricao">{{ obj.description }}</p>
+                                {% if obj.reward != '' %} 
+                                    <p>Com recompensa!</p>
+                                {% endif %}
                                 <p><a href="#{{ obj.id }}" class="btn btn-primary" role="button">Ver mais</a></p>
                             </div>
                         </div>

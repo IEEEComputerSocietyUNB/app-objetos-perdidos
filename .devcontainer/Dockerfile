@@ -10,7 +10,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     python3 \
     python3-pip \
     mysql-server \
-    && pip3 install Flask pytest coverage mysql-connector-python \
+    && pip3 install Flask pytest coverage mysql-connector-python sqlalchemy \
     && /etc/init.d/mysql start \
     && echo "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'password';" | mysql -u root -p='' \
     && echo "GRANT ALL PRIVILEGES ON *.* TO 'dev'@'localhost';" | mysql -u root -p='' \
