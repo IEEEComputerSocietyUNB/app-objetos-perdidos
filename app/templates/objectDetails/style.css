@@ -7,8 +7,8 @@
         background: linear-gradient(180deg,  #1c8adb, #0b3655)!important;
     }
     .user_card {
-        height: 90%;
-        width: 45%;
+        height: 100%;
+        width: 100%;
         margin-top: auto;
         margin-bottom: auto;
         background: #f3f4f5;
@@ -17,7 +17,6 @@
         box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius:8px;
     }
  
     .login_btn {
@@ -42,32 +41,37 @@
         outline: 0px !important;
     }
     .user_card #title h2{
-        margin-top: 10%;
+        margin-top: 2%;
         color: #ffff;
         font-weight: bold;
-        font-size: 35px;
+        font-size: 30px;
         margin-bottom: 90px;
-    }
-    .mb-3{
-        margin-right: 10%;
-        margin-bottom: 10px !important;
+        margin-left: 2%;
+        margin-right: 2%;
     }
     .user_card #title{
-        height: 25%;
+        height: 20%;
         width: 100%;
         background-color: #00824a;
-        border-top-left-radius: 7px;
-        border-top-right-radius: 7px;
     }
-    .form_container{
-        margin-top: 5%;
+    .thumbnail{
+        display: flex;
+        flex-direction: column;
+        margin-top: 2%;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom: 2%;
     }
-    .mb-3 textarea{
-        height: 120px;
-        resize:none;
+    .thumbnail img{
+        width: 200px;
+        height: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2%;
     }
-    .mb-3 #imagemObjeto{
-        background-color: #00824a;
-        border-color: #00824a;
+    .thumbnail p{
+        margin-top: 2%;
     }
+
 
