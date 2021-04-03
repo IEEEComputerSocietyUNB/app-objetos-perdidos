@@ -42,11 +42,7 @@ class UserController():
         email = request.form['email']
         password = request.form['password']
 
-        session_db = db_session()
-
-        user = session_db.query(User).filter_by(email=email).first()
-
-        session_db.close()
+        user = UserController.get_user_by_email(email)
 
         if sha256_crypt.verify(password, user.password):
             session['logged_in'] = True

@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, func
+from sqlalchemy.orm import relationship
 from .base import Base
+from .object import Object
 
 class User(Base):
     __tablename__ = 'Users'
@@ -10,6 +12,8 @@ class User(Base):
     phone = Column(String(20))
     password = Column(String(80), nullable=False)
     create_date = Column(DateTime, default=func.now())
+
+    objects = relationship(Object)    
 
     def __repr__(self):
         return f'User {self.name}'

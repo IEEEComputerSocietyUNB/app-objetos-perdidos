@@ -1,7 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime, func, ForeignKey
-from sqlalchemy.orm import relationship
 from .base import Base
-from .user import User
 
 class Object(Base):
     __tablename__ = 'Objetcs'
@@ -13,7 +11,6 @@ class Object(Base):
     reward = Column(String(200))
     image_path = Column(String(100))
     user_id = Column(Integer, ForeignKey('Users.id'))
-    user = relationship(User)    
 
     def __repr__(self):
         return f'Object {self.name}'

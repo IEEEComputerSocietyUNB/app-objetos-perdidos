@@ -107,17 +107,35 @@ class ObjectController():
         reward = ''
         image_path = ''
 
+        old_obj = ObjectController.get_object(id)
+
         if request.is_json:
             content = request.get_json()
             name = content['name']
             description = content['description']
             reward = content['reward']
-            image_path = content['image_path']
         else:
             name = request.form['name']
             description = request.form['description']
             reward = request.form['reward']
-            image_path = '#'
+
+        if 'object_image' not in request.files:
+            image_path = old_obj.image_path
+
+        else:
+            file = request.files['object_image']
+
+            if file.filename == '':
+                image_path = old_obj.image_path
+
+            elif file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+
+                if filename != old_obj.image_path:
+                    # os.remove(os.path.join(UPLOAD_FOLDER, old_obj.image_path))
+                    file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+                image_path = filename
 
         session_db = db_session()
 
@@ -149,9 +167,13 @@ class ObjectController():
 
     @staticmethod
     def delete(id):
+
+        image_path = ObjectController.get_object(id).image_path
+
         session_db = db_session()
 
         result = ''
+
         try:
             obj = session_db.query(Object).filter_by(id=id).delete(
                 synchronize_session='fetch')
@@ -160,12 +182,13 @@ class ObjectController():
             result = 'failure'
         else:
             session_db.commit()
+            os.remove(os.path.join(UPLOAD_FOLDER, image_path))
+
             result = 'success'
 
         session_db.close()
 
         return result
-    
 
 
     @staticmethod

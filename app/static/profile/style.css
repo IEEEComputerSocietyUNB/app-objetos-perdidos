@@ -97,3 +97,33 @@ html {
     border: 2px solid #820000;
 }
  
+.header{
+    display: inline-block;
+    width: 350px;
+    margin-left: 20%;
+    margin-top: 1%;
+}
+.header #login{
+    font-size: 20px;
+    font-weight: bold;
+    color: #00824a;
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    margin-top: 1.5%;
+    margin-bottom: 5%;
+    margin-left: 20%;
+}
+.header #login:hover{
+    background-color: #012918c9;
+    border: 2px solid #012918c9;
+}
+.ml-2{
+    color: #ffffff;
+    font-weight: bold ;
+    font-size: 22px;
+    text-decoration: none !important;
+
+}
+.ml-2:hover{
+    color: #012918c9 !important;
+}

@@ -38,6 +38,13 @@ def create_app(test_config=None):
 
         return redirect(url_for('view_objects'))
 
+    @app.route('/users/view', methods=['GET'])
+    @is_logged_in
+    def profile():
+        objs = ObjectController.get_objects_of_user(session['id'])
+
+        return render_template('profile/index.html', objs=objs)
+
 
     @app.route('/objects/create', methods=['GET', 'POST'])
     @is_logged_in
@@ -62,6 +69,36 @@ def create_app(test_config=None):
         obj = ObjectController.get_object(id)
         
         return render_template('objectDetails/index.html', obj=obj)
+
+
+    @app.route('/objects/update/<id>', methods=['GET', 'POST'])
+    @is_logged_in
+    def update_object(id):
+        obj = ObjectController.get_object(id)
+
+        if session['id'] == obj.user_id:
+            if request.method == 'GET':
+
+                return render_template('registerObject/index.html', obj=obj)
+
+            else:
+                obj = ObjectController.update(id, request)
+
+                return redirect(url_for('profile'))
+
+        else:
+            return redirect(url_for('profile'))
+
+
+    @app.route('/objects/delete/<id>', methods=['GET'])
+    @is_logged_in
+    def delete_object(id):
+        obj = ObjectController.get_object(id)
+
+        if session['id'] == obj.user_id:
+            obj = ObjectController.delete(id)
+
+        return redirect(url_for('profile'))
 
 
     @app.route('/login', methods=['GET', 'POST'])
@@ -109,6 +146,7 @@ def create_app(test_config=None):
     
 
     @app.route('/db_test')
+    @is_logged_in
     def db_test():
         database.init_db()
 
