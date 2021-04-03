@@ -33,8 +33,8 @@ def create_app(test_config=None):
     def hello():
         init_db() 
 
-        ObjectController.fill_table()
         UserController.fill_table()
+        ObjectController.fill_table()
 
         return redirect(url_for('view_objects'))
 

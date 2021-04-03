@@ -174,12 +174,14 @@ class UserController():
     @staticmethod
     def fill_table():
         user = User(name='Admin', email='admin@admin.com', password=sha256_crypt.encrypt('123'))
+        user2 = User(name='Tester', email='tester@admin.com', password=sha256_crypt.encrypt('123'))
 
         session_db = db_session()
 
         result = ''
         try: 
             session_db.add(user)
+            session_db.add(user2)
         except:
             session_db.rollback()
             result = 'failure'

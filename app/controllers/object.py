@@ -1,7 +1,7 @@
 from ..models.object import Object
 from ..db import db_session
 from werkzeug.utils import secure_filename
-from flask import flash, redirect
+from flask import flash, redirect, session
 import os
 
 UPLOAD_FOLDER='/var/www/uploads'
@@ -14,24 +14,35 @@ def allowed_file(filename):
 class ObjectController():
     @staticmethod
     def get_objects():
-        session = db_session()
+        session_db = db_session()
 
-        objects = session.query(Object).all()
+        objects = session_db.query(Object).all()
 
-        session.close()
+        session_db.close()
 
         return objects
 
 
     @staticmethod
     def get_object(id):
-        session = db_session()
+        session_db = db_session()
 
-        obj = session.query(Object).filter_by(id=id).first()
+        obj = session_db.query(Object).filter_by(id=id).first()
 
-        session.close()
+        session_db.close()
 
         return obj
+
+    
+    @staticmethod
+    def get_objects_of_user(id):
+        session_db = db_session()
+
+        objs = session_db.query(Object).filter_by(user_id=id).all()
+
+        session_db.close()
+
+        return objs
 
 
     @staticmethod
@@ -40,6 +51,7 @@ class ObjectController():
         description = ''
         reward = ''
         image_path = ''
+        user_id = ''
 
         if request.is_json:
             content = request.get_json()
@@ -50,6 +62,7 @@ class ObjectController():
             name = request.form['name']
             description = request.form['description']
             reward = request.form['reward']
+            user_id = session['id']
 
         if 'object_image' not in request.files:
             flash('No file part')
@@ -65,24 +78,24 @@ class ObjectController():
                 file.save(os.path.join(UPLOAD_FOLDER, filename))
                 image_path = filename
 
-        obj = Object(name=name, description=description, reward=reward, image_path=image_path)
+        obj = Object(name=name, description=description, reward=reward, image_path=image_path, user_id=int(user_id))
 
-        session = db_session()
+        session_db = db_session()
 
         result = ''
         try: 
-            session.add(obj)
+            session_db.add(obj)
         except:
-            session.rollback()
+            session_db.rollback()
             result = 'failure'
         else:
-            session.commit()
+            session_db.commit()
             result = 'success'
 
         if request.is_json:
             result = obj.serialize()
 
-        session.close()
+        session_db.close()
 
         return result
 
@@ -106,11 +119,11 @@ class ObjectController():
             reward = request.form['reward']
             image_path = '#'
 
-        session = db_session()
+        session_db = db_session()
 
         result = ''
         try: 
-            obj = session.query(Object).filter_by(id=id).update(
+            obj = session_db.query(Object).filter_by(id=id).update(
                 {
                     'name': name,
                     'description': description,
@@ -119,37 +132,37 @@ class ObjectController():
                 }, synchronize_session='fetch')
 
         except:
-            session.rollback()
+            session_db.rollback()
             result = 'failure'
         else:
-            session.commit()
+            session_db.commit()
             result = 'success'
 
         if request.is_json:
-            obj = session.query(Object).filter_by(id=id).first()
+            obj = session_db.query(Object).filter_by(id=id).first()
             result = obj.serialize()
 
-        session.close()
+        session_db.close()
 
         return result
 
 
     @staticmethod
     def delete(id):
-        session = db_session()
+        session_db = db_session()
 
         result = ''
         try:
-            obj = session.query(Object).filter_by(id=id).delete(
+            obj = session_db.query(Object).filter_by(id=id).delete(
                 synchronize_session='fetch')
         except:
-            session.rollback()
+            session_db.rollback()
             result = 'failure'
         else:
-            session.commit()
+            session_db.commit()
             result = 'success'
 
-        session.close()
+        session_db.close()
 
         return result
     
@@ -157,22 +170,22 @@ class ObjectController():
 
     @staticmethod
     def fill_table():
-        obj1 = Object(name='Mi Band 3', description='Relógio pulseira preta', reward='Um muito obrigado!', image_path='#')
-        obj2 = Object(name='Rolex', description='Relógio suiço de R$ 20.000', reward='', image_path='#')
+        obj1 = Object(name='Mi Band 3', description='Relógio pulseira preta', reward='Um muito obrigado!', image_path='#', user_id=1)
+        obj2 = Object(name='Rolex', description='Relógio suiço de R$ 20.000', reward='', image_path='#', user_id=1)
 
-        session = db_session()
+        session_db = db_session()
 
         result = ''
         try: 
-            session.add(obj1)
-            session.add(obj2)
+            session_db.add(obj1)
+            session_db.add(obj2)
         except:
-            session.rollback()
+            session_db.rollback()
             result = 'failure'
         else:
-            session.commit()
+            session_db.commit()
             result = 'success'
 
-        session.close()
+        session_db.close()
 
         return result
