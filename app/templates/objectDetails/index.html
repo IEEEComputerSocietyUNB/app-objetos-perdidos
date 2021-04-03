@@ -27,6 +27,17 @@
                             <p id="descricao">{{ obj.description }}</p>
                                 <p>Recompensa: {{ obj.reward }}</p>
                         </div>
+						<div class="d-flex justify-content-center">
+						<h3>Dados para contato:</h3><br/>
+						</div>
+						<div class="d-flex justify-content-center">
+						<h4>Email: {{ user.email }}</h4><br/>
+						</div>
+						{% if user.phone == '' %}
+						<div class="d-flex justify-content-center">
+						<h4>Telefone: {{ user.phone }}</h4><br/>
+						</div>
+						{% endif %}
                 </div>
 			</div>
 		</div>

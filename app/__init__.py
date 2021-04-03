@@ -67,8 +67,9 @@ def create_app(test_config=None):
     @app.route('/objects/view/<id>', methods=['GET'])
     def view_object(id):
         obj = ObjectController.get_object(id)
+        user = UserController.get_user(obj.user_id)
         
-        return render_template('objectDetails/index.html', obj=obj)
+        return render_template('objectDetails/index.html', obj=obj, user=user)
 
 
     @app.route('/objects/update/<id>', methods=['GET', 'POST'])
@@ -116,7 +117,7 @@ def create_app(test_config=None):
     def logout():
         UserController.logout()
 
-        return redirect(url_for('login'))
+        return redirect(url_for('view_objects'))
 
 
     @app.route('/signup', methods=['GET', 'POST'])
