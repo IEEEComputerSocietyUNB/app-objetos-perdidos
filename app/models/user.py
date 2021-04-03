@@ -6,8 +6,8 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
-    username = Column(String(50), nullable=False, unique=True)
     email = Column(String(50), nullable=False, unique=True)
+    phone = Column(String(20))
     password = Column(String(80), nullable=False)
     create_date = Column(DateTime, default=func.now())
 
@@ -19,8 +19,8 @@ class User(Base):
         return {
             'id': self.id,
             'name': self.name,
-            'username': self.username,
             'email': self.email,
+            'phone': self.phone,
             'password': self.passowrd,
             'create_date': self.create_date
         }

@@ -27,17 +27,6 @@ class UserController():
 
     
     @staticmethod
-    def get_user_by_username(username):
-        session_db = db_session()
-
-        user = session_db.query(User).filter_by(username=username).first()
-
-        session_db.close()
-
-        return user
-
-
-    @staticmethod
     def get_user_by_email(email):
         session_db = db_session()
 
@@ -50,18 +39,19 @@ class UserController():
 
     @staticmethod
     def login(request):
-        email_or_username = request.form['email']
+        email = request.form['email']
         password = request.form['password']
 
         session_db = db_session()
 
-        user = session_db.query(User).filter_by(email=email_or_username).first()
+        user = session_db.query(User).filter_by(email=email).first()
 
         session_db.close()
 
         if sha256_crypt.verify(password, user.password):
             session['logged_in'] = True
-            session['username'] = user.username
+            session['username'] = user.name
+            session['id'] = user.id
 
             return redirect(url_for('view_objects'))
         else:
@@ -76,23 +66,23 @@ class UserController():
     @staticmethod
     def create(request):
         name = ''
-        username = ''
         email = ''
+        phone = ''
         password = ''
 
         if request.is_json:
             content = request.get_json()
             name = content['name']
-            username = content['username']
             email = content['email']
+            phone = content['phone']
             password = content['password']
         else:
             name = request.form['name']
-            username = request.form['username']
             email = request.form['email']
+            phone = request.form['phone']
             password = request.form['password']
 
-        user = User(name=name, username=username, email=email, password=password)
+        user = User(name=name, email=email, phone=phone, password=password)
 
         session_db = db_session()
 
@@ -117,20 +107,20 @@ class UserController():
     @staticmethod
     def update(id, request):
         name = ''
-        username = ''
         email = ''
+        phone = ''
         password = ''
 
         if request.is_json:
             content = request.get_json()
             name = content['name']
-            username = content['username']
             email = content['email']
+            phone = content['phone']
             password = content['password']
         else:
             name = request.form['name']
-            username = request.form['username']
             email = request.form['email']
+            phone = request.form['phone']
             password = request.form['password']
 
         session_db = db_session()
@@ -140,8 +130,8 @@ class UserController():
             user = session_db.query(User).filter_by(id=id).update(
                 {
                     'name': name,
-                    'username': username,
                     'password': password,
+                    'phone': phone,
                     'email': email,
                 }, synchronize_session='fetch')
 
@@ -183,7 +173,7 @@ class UserController():
 
     @staticmethod
     def fill_table():
-        user = User(name='Admin', email='admin@admin.com', username='admin', password=sha256_crypt.encrypt('123'))
+        user = User(name='Admin', email='admin@admin.com', password=sha256_crypt.encrypt('123'))
 
         session_db = db_session()
 
