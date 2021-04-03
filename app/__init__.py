@@ -122,6 +122,10 @@ def create_app(test_config=None):
 
     @app.route('/signup', methods=['GET', 'POST'])
     def signup():
+        if request.method == 'POST':
+            UserController.create(request)
+
+            return redirect(url_for('login'))
 
         return render_template('signUp/index.html')
         

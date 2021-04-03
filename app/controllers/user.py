@@ -78,7 +78,7 @@ class UserController():
             phone = request.form['phone']
             password = request.form['password']
 
-        user = User(name=name, email=email, phone=phone, password=password)
+        user = User(name=name, email=email, phone=phone, password=sha256_crypt.encrypt(password))
 
         session_db = db_session()
 
