@@ -1,5 +1,15 @@
 from ..models.object import Object
 from ..db import db_session
+from werkzeug.utils import secure_filename
+from flask import flash, redirect
+import os
+
+UPLOAD_FOLDER='/var/www/uploads'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 class ObjectController():
     @staticmethod
@@ -36,12 +46,24 @@ class ObjectController():
             name = content['name']
             description = content['description']
             reward = content['reward']
-            image_path = content['image_path']
         else:
             name = request.form['name']
             description = request.form['description']
             reward = request.form['reward']
-            image_path = '#'
+
+        if 'object_image' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        else:
+            file = request.files['object_image']
+
+            if file.filename == '':
+                image_path = '#'
+
+            elif file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
+                image_path = filename
 
         obj = Object(name=name, description=description, reward=reward, image_path=image_path)
 
